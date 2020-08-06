@@ -2,6 +2,7 @@ const addForm = document.querySelector('.add');
 const list = document.querySelector('.todos');
 
 
+//add todos
 const generateTemplate = todo => {
 
     const html = `
@@ -27,8 +28,13 @@ addForm.addEventListener('submit', e => {
     } else {
         alert('Todo item cannot be empty or blank!');
     }
-    
+
+});
 
 
-
+//delete todos
+list.addEventListener('click', e => {
+    if(e.target.classList.contains('delete')){
+        e.target.parentElement.remove();
+    }
 });
