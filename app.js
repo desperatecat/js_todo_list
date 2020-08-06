@@ -1,8 +1,8 @@
 const addForm = document.querySelector('.add');
 const list = document.querySelector('.todos');
+const search = document.querySelector('.search input');
 
 
-//add todos
 const generateTemplate = todo => {
 
     const html = `
@@ -16,7 +16,20 @@ const generateTemplate = todo => {
 
 };
 
+const filterTodos = term => {
+    //for those who don't match the term, we want to add a 'filtered' class in it, so that we can hide that class
+    Array.from(list.children)
+        .filter(todo => !todo.textContent.includes(term))
+        .forEach(todo => todo.classList.add('filtered'));
 
+    //for those who match the term, we want to remove that existed 'filtered' class
+    Array.from(list.children)
+        .filter(todo => todo.textContent.includes(term))
+        .forEach(todo => todo.classList.remove('filtered'));
+};
+
+
+//add todos
 addForm.addEventListener('submit', e => {
     e.preventDefault();
     const todo = addForm.add.value.trim();
@@ -38,3 +51,10 @@ list.addEventListener('click', e => {
         e.target.parentElement.remove();
     }
 });
+
+
+//search todos
+search.addEventListener('keyup', () => {
+    const term = search.value.trim();
+    filterTodos(term);
+})
