@@ -19,12 +19,12 @@ const generateTemplate = todo => {
 const filterTodos = term => {
     //for those who don't match the term, we want to add a 'filtered' class in it, so that we can hide that class
     Array.from(list.children)
-        .filter(todo => !todo.textContent.includes(term))
+        .filter(todo => !todo.textContent.toLowerCase().includes(term))
         .forEach(todo => todo.classList.add('filtered'));
 
     //for those who match the term, we want to remove that existed 'filtered' class
     Array.from(list.children)
-        .filter(todo => todo.textContent.includes(term))
+        .filter(todo => todo.textContent.toLowerCase().includes(term))
         .forEach(todo => todo.classList.remove('filtered'));
 };
 
@@ -55,6 +55,6 @@ list.addEventListener('click', e => {
 
 //search todos
 search.addEventListener('keyup', () => {
-    const term = search.value.trim();
+    const term = search.value.trim().toLowerCase();
     filterTodos(term);
 })
