@@ -22,6 +22,8 @@ addForm.addEventListener('submit', e => {
 
     if(todo.length){
         generateTemplate(todo);
+        addForm.reset();
+
     } else {
         alert('Todo item cannot be empty or blank!');
     }
